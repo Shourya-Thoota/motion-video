@@ -1,8 +1,8 @@
 ---
 name: motion-video
-description: "Make videos from code: animated explainers, motion graphics, kinetic type, animated charts, product walkthroughs, and math animations rendered to MP4, in the style of Claude Motion. Use for code-built animation with HTML, Remotion, or Manim; not for photorealistic AI-generated footage or people."
+description: "Make videos from code: explainers, motion graphics, kinetic type, charts, and product walkthroughs as MP4. Use for HTML, Remotion, or Manim when the user wants a video, a less robotic script, or more engagement. Not photorealistic footage, people, or caption-only edits."
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Motion video
@@ -23,9 +23,9 @@ Read `references/engines.md` only when the choice is unclear or the user asks to
 ## Workflow
 
 1. **Brief.** Pin down audience, where it plays, length, aspect ratio (16:9, 9:16, 1:1), one-line message, and the user's data, copy, images, and brand. Ask only for what changes the build; otherwise pick defaults and state them.
-2. **Plan beats.** Write a short beat table (beat, seconds, on screen, purpose) in chat. Read `references/motion-craft.md` before planning timing, type, and easing. For brand or aesthetic choices, apply `user:anti-slop-design` rules if loaded rather than inventing a second style system.
+2. **Plan beats.** Write a beat table (beat, seconds, on screen, purpose). Read `references/motion-craft.md` for timing and easing. Read `references/engagement.md` before on-screen copy or narration, unless it is a silent logo sting or a math demo with no audience line. Apply `user:anti-slop-design` if loaded; do not invent a second style system.
 3. **Build editable.** Put every word, number, color, and duration in one content block at the top (Frame Studio: `CONTENT`) so one detail can change without touching the rest. Animation must be a pure function of time: no `Date.now`, unseeded random, CSS transitions, or `requestAnimationFrame` loops.
-4. **Check stills first.** Frame Studio: `node scripts/render.mjs sheet <index.html> --out sheet.png` and `stills --times ...`. Inspect for clipping, overlap, contrast, unreadable text, and empty frames. Fix before full render.
+4. **Check stills first.** Frame Studio: `node scripts/render.mjs sheet <index.html> --out sheet.png` and `stills --times 0,0.5,1.2,3`. Inspect for clipping, overlap, contrast, unreadable text, empty frames, and a static open. Fix before full render.
 5. **Render.** `node scripts/render.mjs video <index.html> --out out.mp4 [--audio mix.wav] [--scale 0.5]`. Draft at half scale, final at full.
 6. **Verify.** `python3 scripts/check_video.py out.mp4 --sheet check.png`, then view the sheet. Confirm duration, resolution, fps, audio presence, no decode errors, and no unintended black or frozen spans.
 7. **Deliver** the MP4, the editable source folder, and a one-line note of how to change text, numbers, or timing. List any unverified checks.
@@ -34,7 +34,7 @@ Completion: a playable MP4 whose sheet you have looked at, plus editable source.
 
 ## Frame Studio setup
 
-Run `bash scripts/setup.sh <runtime-dir>` once per task, then call the renderer with `STUDIO_RUNTIME=<runtime-dir>`. It installs `playwright-core` only and reuses an existing Chromium. Copy the template folder into the project; keep assets and fonts local. Change aspect ratio in `CONTENT.format`, then rework the layout CSS and recheck the sheet. The template file also previews in a browser (`?t=4` freezes a moment).
+Run `bash scripts/setup.sh <runtime-dir>` once per task, then call the renderer with `STUDIO_RUNTIME=<runtime-dir>`. It installs `playwright-core` only and reuses an existing Chromium. Copy the template folder into the project; keep assets and fonts local. Replace the sample kicker before render; opens follow `references/engagement.md`. Change aspect ratio in `CONTENT.format`, then rework the layout CSS and recheck the sheet. The template file also previews in a browser (`?t=4` freezes a moment).
 
 ## Limits
 

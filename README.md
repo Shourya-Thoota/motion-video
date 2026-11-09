@@ -8,12 +8,13 @@ An agent skill that makes videos from code: animated explainers, motion graphics
 
 - **Engine routing.** Picks the right renderer for the job: a rich production pipeline (storyboard, voiceover, captions, transitions) via HyperFrames; the bundled Frame Studio for short explainers, animated charts, kinetic type, and logo stings; Remotion for React video projects; Manim for equations, geometry, and 3Blue1Brown-style math animation.
 - **Build editable.** All content is declared in one block at the top of the template, so a single detail can change without touching the rest. Animation is a pure function of time — no wall-clock reads, unseeded randomness, or uncontrolled loops.
-- **Check stills first.** Frame sheets and stills are rendered and inspected for clipping, overlap, contrast, unreadable text, and empty frames before any full render. Draft at half scale, final at full.
+- **Less robotic, more watched.** Spoken and social opens follow `references/engagement.md`: frame 0 is already moving, the first line is something that already happened, the voice matches samples when you have them, and the ending is one honest next step. Stills at 0, 0.5, 1.2, and 3 seconds reject a static title card.
+- **Check stills first.** Frame sheets and stills are rendered and inspected for clipping, overlap, contrast, unreadable text, empty frames, and a static open before any full render. Draft at half scale, final at full.
 - **Verify the file.** A bundled checker confirms duration, resolution, fps, audio presence, no decode errors, and no unintended black or frozen spans.
 
 ## When to use it
 
-Use for code-built animation in HTML, Remotion, or Manim. Not for photorealistic AI-generated footage or people — that belongs to a generative media skill. No network fonts or remote media at render time; audio is muxed, not mixed.
+Use for code-built animation in HTML, Remotion, or Manim, including when the cut should feel less scripted or more engaging. Not for photorealistic AI-generated footage, people, or caption-only edits. No network fonts or remote media at render time; audio is muxed, not mixed.
 
 ## What's inside
 
@@ -26,6 +27,7 @@ scripts/check_video.py      # MP4 verification
 references/engines.md       # Engine comparison and license notes
 references/remotion-manim.md  # Remotion and Manim specifics
 references/motion-craft.md  # Timing, type, and easing
+references/engagement.md    # Hooks, voice, and the first 3 seconds
 ```
 
 ## Install

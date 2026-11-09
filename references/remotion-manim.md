@@ -15,7 +15,7 @@ Confirm license eligibility first (free up to 3 people total headcount; see `eng
    - Media through `staticFile()` and Remotion's `<Img>`, `<Video>`/`<OffthreadVideo>`, `<Audio>` so frames wait for loading.
    - Fonts with `@remotion/google-fonts` or `@remotion/fonts`; random with `random(seed)`.
    - Register each video as a `<Composition id width height fps durationInFrames>`; expose editable copy as `defaultProps` with a zod schema.
-3. Stills first: `npx remotion still <id> out/still.png --frame=<n>`.
+3. Stills first: `npx remotion still <id> out/still.png --frame=<n>` at 0.0s, 0.5s, 1.2s, and 3.0s. Spoken and social Remotion still follows `references/engagement.md`: word-by-word motion, an event by frame 0, no static card.
 4. Render: `npx remotion render <id> out/video.mp4` (add `--scale=0.5` for drafts). Then run `scripts/check_video.py`.
 
 If Chromium download is blocked, pass `--browser-executable=<path>` to an existing Chrome.
